@@ -3,9 +3,14 @@ package com.telyutils.ycaller;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 
 /**
  * Created by ankit on 6/28/2016.
@@ -27,10 +32,9 @@ public class IncomingBroadcastReceiver extends BroadcastReceiver {
                     Intent i = new Intent(context, OverlayYMessage.class);
                     i.putExtras(intent);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     context.startActivity(i);
                 }
-            },2000);
+            }, 2000);
 
         }
     }

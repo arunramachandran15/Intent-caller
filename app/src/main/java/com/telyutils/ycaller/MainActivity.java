@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * this makes a native android call and broadcasts YMessage for the overlay
+     *
      * @param phoneNumber
      * @param yMessage
      */
@@ -63,5 +64,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         startActivity(intent);
+        finish();
     }
 }
