@@ -35,6 +35,7 @@ public class OverlayYMessage extends Activity implements Callback<GeneralRespons
         super.onCreate(savedInstanceState);
         String state = getIntent().getStringExtra(TelephonyManager.EXTRA_STATE);
         //incoming call fetch Ymessage if any
+        Log.d(TAG, "state "+state);
         if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)){
 
             Log.e(TAG, "Inside EXTRA_STATE_RINGING");
@@ -54,6 +55,7 @@ public class OverlayYMessage extends Activity implements Callback<GeneralRespons
                 .build();
         TelephonyManager tMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         String myPhoneNumber = tMgr.getLine1Number();
+        Log.d(TAG,"Myphone number "+myPhoneNumber);
         ReceiveCall receiveCall = new ReceiveCall(number,myPhoneNumber);
         YCallerService service = retrofit.create(YCallerService.class);
         Call<GeneralResponse> generalResponse = service.receiveCall(receiveCall);
@@ -62,8 +64,9 @@ public class OverlayYMessage extends Activity implements Callback<GeneralRespons
 
 
     private void displayAlert(String yMessage) {
+        Log.d(TAG, "YMessage"+yMessage);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("yMessage?").setCancelable(
+        builder.setMessage(yMessage).setCancelable(
                 false).setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -78,12 +81,14 @@ public class OverlayYMessage extends Activity implements Callback<GeneralRespons
     @Override
     public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
         if(response.body().getStatuscode() == 201) {
+            Log.d(TAG, "Success receiveCall");
             displayAlert(response.body().getDescription());
         }
     }
 
     @Override
     public void onFailure(Call<GeneralResponse> call, Throwable t) {
+        finish();
         //do nothing
     }
 }

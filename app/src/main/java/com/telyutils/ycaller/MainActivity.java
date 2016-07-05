@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
         Log.d(TAG,""+response.body().getStatuscode());
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            finish();
             return;
         }
 
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
         Log.d(TAG,"Failure");
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            finish();
             return;
         }
 

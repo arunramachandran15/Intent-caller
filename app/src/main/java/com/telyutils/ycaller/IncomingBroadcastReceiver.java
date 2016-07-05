@@ -44,7 +44,7 @@ public class IncomingBroadcastReceiver extends BroadcastReceiver {
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(i);
                 }
-            }, 2000);
+            }, 0);
 
         }
     }
