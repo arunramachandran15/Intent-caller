@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -54,7 +55,9 @@ public class OverlayYMessage extends Activity implements Callback<GeneralRespons
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         TelephonyManager tMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-        String myPhoneNumber = tMgr.getLine1Number();
+        final SharedPreferences sharedpreferences;
+        sharedpreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
+        String myPhoneNumber = sharedpreferences.getString("mynumber", "");
         Log.d(TAG,"Myphone number "+myPhoneNumber);
         ReceiveCall receiveCall = new ReceiveCall(number,myPhoneNumber);
         YCallerService service = retrofit.create(YCallerService.class);

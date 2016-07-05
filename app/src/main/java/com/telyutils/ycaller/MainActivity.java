@@ -3,6 +3,7 @@ package com.telyutils.ycaller;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
@@ -66,6 +67,25 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
                 placeCall(phoneNumber, yMessage);
             }
         });
+
+        Button btnSaveNumber = (Button) findViewById(R.id.btnSaveNumber);
+        final SharedPreferences sharedpreferences;
+         sharedpreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
+        final EditText eYourNumber = (EditText) findViewById(R.id.eYourNumber);
+        btnSaveNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String eYourNumber1 = eYourNumber.getText().toString();
+
+                if (eYourNumber1.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Not Valid", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString("mynumber",eYourNumber1 );
+                editor.commit();
+            }
+        });
     }
 
 
@@ -89,7 +109,10 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
      */
     private void reportStartCallApi(String phoneNumber,String yMessage){
         TelephonyManager tMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-        String myPhoneNumber = tMgr.getLine1Number();
+
+        final SharedPreferences sharedpreferences;
+        sharedpreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
+        String myPhoneNumber = sharedpreferences.getString("mynumber", "");
         StartCall startCall = new StartCall(myPhoneNumber,phoneNumber,yMessage);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(YCallerService.BASE_URL)
