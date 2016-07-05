@@ -17,11 +17,21 @@ import android.widget.LinearLayout;
  */
 public class IncomingBroadcastReceiver extends BroadcastReceiver {
 
+    private static final String TAG = IncomingBroadcastReceiver.class.getSimpleName();
     @Override
     public void onReceive(final Context context, final Intent intent) {
 
         Log.d("Ringing", "Something Happened");
         String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+        if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)){
+
+            Log.e(TAG, "Inside EXTRA_STATE_RINGING");
+            String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+            Log.e(TAG, "incoming number : " + number);
+
+        }
+
+
         if (state.equals(TelephonyManager.EXTRA_STATE_RINGING)
                 || state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
 
