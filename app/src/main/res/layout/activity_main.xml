@@ -27,6 +27,7 @@
         android:id="@+id/eTextPhone"
         style="@style/TextBasic"
         android:inputType="phone"
+        android:hint="Ex : 9730195442"
         android:digits="0123456789+"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -45,6 +46,7 @@
     <EditText
         android:id="@+id/eTextYMessage"
         style="@style/TextBasic"
+        android:hint="Hey, its Urgent !!!"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -63,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_green_dark"
-            android:text="EDIT Profile"/>
+            android:text="EDIT Your Profile"/>
 
     </LinearLayout>
 

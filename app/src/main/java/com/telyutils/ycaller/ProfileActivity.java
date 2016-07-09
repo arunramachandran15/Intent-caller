@@ -43,6 +43,9 @@ public class ProfileActivity extends AppCompatActivity  {
         final EditText phoneText = (EditText) findViewById(R.id.eTextPhone);
         final EditText yMessageText = (EditText) findViewById(R.id.eTextYMessage);
         Button callBtn = (Button) findViewById(R.id.btnCall);
+        Button btnGoBack = (Button) findViewById(R.id.btnGoBack);
+
+
 
         assert phoneText != null;
         phoneText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
@@ -67,6 +70,15 @@ public class ProfileActivity extends AppCompatActivity  {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString("mynumber","+91"+eYourNumber1 );
                 editor.commit();
+            }
+        });
+
+        btnGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
