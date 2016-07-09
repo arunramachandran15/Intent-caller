@@ -48,36 +48,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-        <TextView
-            style="@style/TextBasic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Your Number"/>
-
-        <EditText
-            android:id="@+id/eYourNumber"
-            style="@style/TextBasic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <Button
             android:layout_alignParentBottom="true"
-            android:id="@+id/btnSaveNumber"
+            android:id="@+id/btnCall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_green_dark"
-            android:text="Save Number"/>
+            android:text="CAll"/>
+
+        <Button
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btnEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_green_dark"
+            android:text="EDIT Profile"/>
 
     </LinearLayout>
 
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/btnCall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_green_dark"
-        android:text="CAll"/>
 
 
 
