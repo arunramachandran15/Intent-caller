@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
         final EditText phoneText = (EditText) findViewById(R.id.eTextPhone);
         final EditText yMessageText = (EditText) findViewById(R.id.eTextYMessage);
         Button callBtn = (Button) findViewById(R.id.btnCall);
+        Button ediprofileBtn = (Button) findViewById(R.id.btnEditProfile);
 
         assert phoneText != null;
         phoneText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
@@ -54,13 +55,14 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
                 String yMessage = yMessageText.getText().toString();
                 String phoneNumber = phoneText.getText().toString();
 
-                if (phoneNumber.isEmpty()) {
+                if (phoneNumber.isEmpty()|| phoneNumber.length()!=10) {
                     Toast.makeText(MainActivity.this, "Enter number tobe called, it cant be blank", Toast.LENGTH_LONG).show();
                     return;
                 }
+                phoneNumber =  "+91"+ phoneNumber;
                 //if no message typed do not place a call
                 if (yMessage.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Enter your fucking YMessage, it cant be blank", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Enter your YMessage, it cant be blank", Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -68,24 +70,15 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
             }
         });
 
-        Button btnSaveNumber = (Button) findViewById(R.id.btnSaveNumber);
-        final SharedPreferences sharedpreferences;
-         sharedpreferences = getSharedPreferences("myprefs", Context.MODE_PRIVATE);
-        final EditText eYourNumber = (EditText) findViewById(R.id.eYourNumber);
-        btnSaveNumber.setOnClickListener(new View.OnClickListener() {
+        assert ediprofileBtn != null;
+        ediprofileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String eYourNumber1 = eYourNumber.getText().toString();
-
-                if (eYourNumber1.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "Not Valid", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("mynumber",eYourNumber1 );
-                editor.commit();
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
         });
+
     }
 
 

@@ -29,6 +29,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ProfileActivity">
+
+        </activity>
+
         <activity android:name=".OverlayYMessage"
             android:theme="@android:style/Theme.Translucent"/>
     </application>
