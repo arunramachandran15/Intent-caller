@@ -47,6 +47,10 @@ public class ProfileActivity extends AppCompatActivity  {
 
 
 
+
+
+
+
         assert phoneText != null;
         phoneText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
@@ -81,6 +85,12 @@ public class ProfileActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
+
+
+
+
+
+
     }
 
 

@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
         final EditText yMessageText = (EditText) findViewById(R.id.eTextYMessage);
         Button callBtn = (Button) findViewById(R.id.btnCall);
         Button ediprofileBtn = (Button) findViewById(R.id.btnEditProfile);
+        Button contactButton =(Button) findViewById(R.id.button2);
 
         assert phoneText != null;
         phoneText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
@@ -89,6 +90,16 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"go to contact",Toast.LENGTH_SHORT).show();
+                Intent gotoContactActivity=new Intent(MainActivity.this,ContactActivity.class);
+                startActivity(gotoContactActivity);
             }
         });
 

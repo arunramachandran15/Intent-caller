@@ -13,7 +13,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
 
     <TextView
         style="@style/TextBasic"
@@ -67,8 +68,16 @@
             android:textColor="@android:color/holo_green_dark"
             android:text="EDIT Your Profile"/>
 
-    </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go To Contacts"
+            android:id="@+id/button2"
+            android:gravity="center"
+            android:layout_marginTop="38dp" />
 
+
+    </LinearLayout>
 
 
 
