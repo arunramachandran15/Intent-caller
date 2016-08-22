@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,9 +48,13 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
     private static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 5000;
     private StartCall startCall;
     private String yMessage;
+    private String ynumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -57,6 +63,17 @@ public class MainActivity extends AppCompatActivity implements Callback<GeneralR
         Button callBtn = (Button) findViewById(R.id.btnCall);
         Button ediprofileBtn = (Button) findViewById(R.id.btnEditProfile);
         Button contactButton =(Button) findViewById(R.id.button2);
+        Intent intent = getIntent();
+        if(intent.hasExtra("number")){
+            ynumber = intent.getStringExtra("number");
+            String pattern="[\\s]";
+            String replace="";
+            Pattern p= Pattern.compile(pattern);
+            Matcher m=p.matcher(ynumber);
+            ynumber=m.replaceAll(replace);
+            ynumber = ynumber.substring(ynumber.length() - 10);
+            phoneText.setText(ynumber);
+        }
 
         assert phoneText != null;
         phoneText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());

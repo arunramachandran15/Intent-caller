@@ -43,16 +43,21 @@
         android:textSize="15dp" >
     </TextView>
     </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width = "match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/info_id"
-        android:layout_marginLeft="30dp">
+        android:gravity="right"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
     <ImageView
         android:id="@+id/normal_callimg"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginTop="20dp"
+        android:layout_gravity="right"
         android:layout_marginLeft="30dp"
         android:src="@drawable/call" >
     </ImageView>
@@ -64,8 +69,9 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/normal_callimg"
         android:layout_marginLeft="30dp"
+        android:layout_gravity="right"
         android:src="@drawable/ycall" >
     </ImageView>
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

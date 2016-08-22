@@ -7,11 +7,14 @@ package com.telyutils.ycaller;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,6 +32,7 @@ public class ContactActivity extends Activity {
     private ListView lstNames;
     private ImageView normalCall;
     private ImageView ycall;
+    List<CustomerDao> contactsList ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,20 @@ public class ContactActivity extends Activity {
         setContentView(R.layout.activity_contact);
         initComponents();
         importContacts();
+        lstNames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
+                CustomerDao notification = contactsList.get(position);
+
+                Intent ycall = new Intent(ContactActivity.this, MainActivity.class);
+                ycall.putExtra("number",notification.customer_No);
+                startActivity(ycall);
+                Toast.makeText(ContactActivity.this, notification.customer_Name
+                        , Toast.LENGTH_LONG).show();
+
+            }
+        });
 
     }
 
@@ -52,6 +70,7 @@ public class ContactActivity extends Activity {
             //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
         } else {
             List<CustomerDao> contacts = getContactNames();
+            contactsList = contacts;
            // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.custom_contact_list, contacts);
             ContactAdapter contactAdapter=new ContactAdapter(this,R.layout.custom_contact_list,contacts);
             lstNames.setAdapter(contactAdapter);
