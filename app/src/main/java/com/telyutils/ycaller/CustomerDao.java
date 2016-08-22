@@ -27,7 +27,9 @@ public class CustomerDao {
     }
 
     public void setCustomer_No(String customer_No) {
+
         this.customer_No = customer_No;
+
     }
 
     public String getCustomer_Name() {

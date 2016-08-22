@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,16 +67,18 @@ public class ContactAdapter extends ArrayAdapter<CustomerDao> {
             holder.customerImage = (ImageView) convertView.findViewById(R.id.logo);
             holder.normalCall=(ImageView)convertView.findViewById(R.id.normal_callimg);
             holder.ycall=(ImageView)convertView.findViewById(R.id.ycaller_img);
-            holder.customer_Name.setText(contactList.get(position).getCustomer_Name());
-            holder.customer_Number.setText(contactList.get(position).getCustomer_No());
-          holder.ycall.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
 
-              }
-          });
             convertView.setTag(holder);
         }
+        else {
+            holder = (ViewHolder) convertView.getTag();
+
+        }
+        CustomerDao custobj = contactList.get(position);
+        String nameee = custobj.getCustomer_Name();
+        Log.d("Tagg",nameee);
+        holder.customer_Name.setText(nameee);
+        holder.customer_Number.setText(contactList.get(position).getCustomer_No());
 
         return convertView;
     }
